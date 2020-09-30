@@ -5,8 +5,8 @@ public class SplayTree<Key extends Comparable<Key>, Value> {
     public Node root;   // root of the BST
 
     // BST helper node data type
-    private class Node {
-        private int key;            // key
+    private static class Node {
+        private final int key;            // key
         private Node left, right;   // left and right subtrees
 
         public Node(int key) {
@@ -44,12 +44,12 @@ public class SplayTree<Key extends Comparable<Key>, Value> {
         }
     }
     // THis insert function does not splay every new node to the root, instead stores it in the leaf
-    void insert_without_splay(int key) {
+    public void insert_without_splay(int key) {
         root = insertRec(root, key);
     }
 
     /* A recursive function to insert a new key in BST */
-    Node insertRec(Node root, int key) {
+    private Node insertRec(Node root, int key) {
 
         /* If the tree is empty, return a new node */
         if (root == null) {

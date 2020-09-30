@@ -2,7 +2,7 @@ package structure;
 
 public class SplayNet {
     /* Class containing left and right child of current node and key value*/
-    static class Node {
+    private static class Node {
         int key;
         Node left, right;
 
@@ -13,20 +13,20 @@ public class SplayNet {
     }
 
     // Root of BST
-    Node root;
+    private Node root;
 
     // Constructor
-    SplayNet() {
+    public SplayNet() {
         root = null;
     }
 
     // This method mainly calls insertRec()
-    void insert(int key) {
+    public void insert(int key) {
         root = insertRec(root, key);
     }
 
     /* A recursive function to insert a new key in BST */
-    Node insertRec(Node root, int key) {
+    private Node insertRec(Node root, int key) {
 
         /* If the tree is empty, return a new node */
         if (root == null) {
@@ -45,12 +45,12 @@ public class SplayNet {
     }
 
     // This method mainly calls InorderRec()
-    void inorder() {
+    public void inorder() {
         inorderRec(root);
     }
 
     // A utility function to do inorder traversal of BST
-    void inorderRec(Node root) {
+    private void inorderRec(Node root) {
         if (root != null) {
             inorderRec(root.left);
             System.out.println(root.key);
@@ -81,8 +81,7 @@ public class SplayNet {
                 node = node.left;
                 cost++;
                 //  System.out.println("line 83 cost="+cost+" node.key="+node.key);
-            }
-            else {
+            } else {
                 node = node.right;
                 cost++;
                 // System.out.println("line 88 cost="+cost+" node.key="+node.key);
@@ -111,17 +110,13 @@ public class SplayNet {
         Node nodeSet[] = findNodes(u, v);    //Node[0]=common_ancestor; Node[1]=Node(u); NodeSet[2]=parent of common_ancestor
         Node common_ancester = nodeSet[0];
         Node uNode = nodeSet[1];
-        Node parent_CA=nodeSet[2];
-        if(parent_CA.key>common_ancester.key) {
+        Node parent_CA = nodeSet[2];
+        if (parent_CA.key > common_ancester.key) {
             parent_CA.left = splay(common_ancester, u);
-        }
-        else if(parent_CA.key<common_ancester.key)
-        {
-            parent_CA.right=splay(common_ancester,u);
-        }
-        else
-        {
-            this.root=splay(this.root,u);
+        } else if (parent_CA.key < common_ancester.key) {
+            parent_CA.right = splay(common_ancester, u);
+        } else {
+            this.root = splay(this.root, u);
         }
         // System.out.println("after splay1:");
         // this.printPreorder(this.root);          //Print tree in preorder fashion
@@ -138,20 +133,20 @@ public class SplayNet {
     {
         Node node = this.root;
         Node[] nodeSet = new Node[3];
-        Node parent_CA=node;
+        Node parent_CA = node;
         //Property used => u<=common_ancester<=v always
         while (node != null && ((u > node.key && v > node.key) || (u < node.key && v < node.key))) {
             if (u > node.key && v > node.key)     // if current_node<u<=v ... Go right
             {
-                parent_CA=node;
+                parent_CA = node;
                 node = node.right;
             } else if (u < node.key && v < node.key)//if u<=v<current_node ... Go left
             {
-                parent_CA=node;
+                parent_CA = node;
                 node = node.left;
             }
         }
-        nodeSet[2]=parent_CA;
+        nodeSet[2] = parent_CA;
         nodeSet[0] = node;        //nodeSet[0]=common_ancester
         while (node != null && node.key != u)        //Finding Node(u)
         {
@@ -209,26 +204,24 @@ public class SplayNet {
         } else return h;
     }
 
-    public structure.SplayNet copy()
-    {
-        structure.SplayNet copy=new structure.SplayNet();
-        this.makeCopy(copy,this.root);
+    public SplayNet copy() {
+        SplayNet copy = new SplayNet();
+        this.makeCopy(copy, this.root);
         return copy;
     }
-    private void makeCopy(structure.SplayNet copy, Node node)
-    {
+
+    private void makeCopy(SplayNet copy, Node node) {
         if (node == null)
             return;
 
         /* first print data of node */
         copy.insert(node.key);
-        //System.out.print(node.key + " ");
 
         /* then recur on left sutree */
-        makeCopy(copy,node.left);
+        makeCopy(copy, node.left);
 
         /* now recur on right subtree */
-        makeCopy(copy,node.right);
+        makeCopy(copy, node.right);
     }
 
 
@@ -260,9 +253,5 @@ public class SplayNet {
         /* now recur on right subtree */
         printPreorder(node.right);
     }
-
-
-    // Driver Program to test above functions
-
 }
 
