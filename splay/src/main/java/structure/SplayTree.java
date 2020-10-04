@@ -1,6 +1,6 @@
 package structure;
 
-public class SplayTree<Key extends Comparable<Key>, Value> {
+public class SplayTree {
 
     public Node root;   // root of the BST
 

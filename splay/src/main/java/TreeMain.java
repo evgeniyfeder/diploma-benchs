@@ -8,7 +8,7 @@ public class TreeMain {
         /* Input Type
         Line 1--> number of nodes in the input tree (eg. m)
         Line 2--> list keys of all nodes present in the tree (m integers)
-        Line 3--> threshold value (value of a or alpha) -- single integer
+        Line 3--> alpha
         Line 4--> number of search queries (eg, n)
         Line 5--> n integers (keys that are to be queried)
         Eg of input :-
@@ -18,13 +18,7 @@ public class TreeMain {
         6
         0 3 1 2 5 2
         Corresponding output:
-        original Tree:
-        0 1 7 2 5 3 10
-        Final tree:
-        5 3 2 1 0 7 10
-        total_routing_cost=12
-        epoch_routing_cost=2
-        adjustment_cost=10
+        10
          */
         Scanner s = new Scanner(System.in);
         int totNodes = s.nextInt();
@@ -43,6 +37,6 @@ public class TreeMain {
             int u = s.nextInt();
             lazy_tree.search(u);
         }
-
+        System.out.println();
     }
 }
