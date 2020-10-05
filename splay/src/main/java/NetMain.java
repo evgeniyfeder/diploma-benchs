@@ -46,7 +46,7 @@ public class NetMain {
             int v = s.nextInt();
 
             lazy_net.request(u, v);
+            System.out.println(lazy_net.total_routing_cost);
         }
-        System.out.println(lazy_net.total_routing_cost);
     }
 }

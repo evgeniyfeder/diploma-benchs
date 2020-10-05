@@ -36,7 +36,7 @@ public class TreeMain {
         for (int i = 0; i < tot_comm_req; i++) {
             int u = s.nextInt();
             lazy_tree.search(u);
+            System.out.println(lazy_tree.total_routing_cost);
         }
-        System.out.println();
     }
 }
